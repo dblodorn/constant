@@ -29,6 +29,7 @@ export default {
     }
   },
   created () {
+    this.getData()
     this.debouncedResize = debounce(this.resize, 50)
   },
   mounted () {
@@ -38,7 +39,6 @@ export default {
     window.addEventListener('orientationchange', this.debouncedResize)
     window.addEventListener('scroll', this.scroll, { passive: true })
     window.addEventListener('mousemove', this.mouseMove, { passive: true })
-    console.log(this.$global)
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.debouncedResize, {
@@ -68,6 +68,7 @@ export default {
       this.menuState = !this.menuState
     },
     ...mapActions({
+      getData: 'getData',
       setTouch: 'screen/setTouch',
       setScreenSize: 'screen/setScreenSize'
     }),
