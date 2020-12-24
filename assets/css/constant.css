@@ -23,6 +23,11 @@
   top: 0;
 }
 
+.map-view {
+  width: 100%!important;
+  height: 100%!important;
+}
+
 @media (hover:hover) {
   .nav-type:hover {
     color: transparent;
