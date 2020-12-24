@@ -7,7 +7,7 @@
   --pad-micro: calc(var(--pad-single)  / 3);
   --max-width-small: calc(var(--base-unit) * 40);
   --max-width-medium: calc(var(--base-unit) * 45);
-  --max-width-large: calc(var(--base-unit) * 55);
+  --max-width-large: calc(var(--base-unit) * 50);
   --max-width-xl: calc(var(--base-unit) * 70);
   --header-height: calc(var(--base-unit) * 4);
   --footer-height: calc(var(--base-unit) * 4);
@@ -17,13 +17,13 @@
 :root { 
   --micro-size: calc(var(--base-unit) / 1.25);
   --sm-size: var(--base-unit);
-  --reg-size: calc(var(--base-unit) * 1.35);
+  --reg-size: calc(var(--base-unit) * 1.65);
   --md-size: calc(var(--base-unit) * 1.5);
   --big-size: calc(var(--base-unit) * 2);
   --xl-size: calc(var(--base-unit) * 2.5);
   --xxl-size: calc(var(--base-unit) * 3);
   --h1: var(--xl-size);
-  --h2: var(--big-size);
+  --h2: var(--xl-size);
   --h3: var(--big-size);
   --h4: var(--md-size);
   --h5: var(--reg-size);

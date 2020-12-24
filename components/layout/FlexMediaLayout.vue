@@ -1,12 +1,12 @@
 <template>
   <section 
     v-if="layout.length"
-    class="flex-media-layout mw-full center"
+    class="flex-media-layout mw-xl center"
   >  
     <div
       v-for="(item, i) of layout"
       :key="`${item.acf_fc_layout + i}`"
-      :class="['y-pad-single mw-xl center', item.acf_fc_layout]"
+      :class="['mw-full center', item.acf_fc_layout]"
     >
       <video-player
         v-if="item.acf_fc_layout === 'video'"
@@ -17,6 +17,10 @@
         :controls="item.controls"
         :muted="item.muted"
         :loops="item.loops"
+      />
+      <link-list
+        v-if="item.acf_fc_layout === 'link_list'"
+        :links="item.links"
       />
       <slide-show
         v-if="item.acf_fc_layout === 'carousel'"
@@ -47,10 +51,13 @@
 
 <script>
 import CopyBlock from './CopyBlock'
+import LinkList from './LinkList'
+
 export default {
   name: "FlexMediaLayout",
   components: {
-    CopyBlock
+    CopyBlock,
+    LinkList
   },
   props: {
     layout: {

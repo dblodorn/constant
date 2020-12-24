@@ -2,7 +2,7 @@
   <project-content
     :post="post"
   >
-      <component :is="'style'">
+    <component :is="'style'">
       :root {
         --bg_color: {{apiData.options.styling.projects_post_bg_color}}!important;
         --pattern_color: {{apiData.options.styling.projects_post_pattern_color}}!important;

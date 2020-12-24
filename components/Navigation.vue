@@ -1,7 +1,7 @@
 <template>
   <nav class="flex-row flex-space-between text-align-center x-pad-single">
     <n-link
-      :class="['footer-nav-type h3', notHome ? 'outline-hover' : 'home-hover']"
+      :class="['footer-nav-type h3', !notHome ? 'outline-hover' : 'home-hover']"
       v-for="item of navigation"
       :key="item.slug"
       :to="`/${item.slug}`"
@@ -16,7 +16,7 @@ export default {
   name: 'Navigation',
   computed: {
     notHome() {
-      return this.$route.name !== "index" ? true : false
+      return (this.$route.name === "index" || this.$route.name === "about") ? true : false
     },
     navigation() {
       let navItems = []
@@ -49,10 +49,18 @@ export default {
     .home-hover:hover {
       color: var(--pattern_color);
     }
+    .home-hover.nuxt-link-exact-active {
+      color: var(--pattern_color);
+      pointer-events: none;
+      -webkit-text-fill-color: var(--white);
+      -webkit-text-stroke-color: var(--footer_type_color);
+      -webkit-text-stroke-width: 1px;
+      -webkit-font-smoothing: antialiased;
+    }
     .outline-hover:hover,
     .outline-hover.nuxt-link-exact-active {
-      color: var(--white);
-      -webkit-text-fill-color: var(--white);
+      color: transparent;
+      -webkit-text-fill-color: transparent;
       -webkit-text-stroke-color: var(--footer_type_color);
       -webkit-text-stroke-width: 1px;
       -webkit-font-smoothing: antialiased;

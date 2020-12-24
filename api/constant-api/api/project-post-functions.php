@@ -46,6 +46,21 @@
     );
   }
 
+  function return_link_list() {
+    $data = array();
+    if ( have_rows( 'link_list' ) ) :
+      while ( have_rows( 'link_list' ) ) : the_row();
+        $data[] = array(
+          'cta' => get_sub_field( 'link_cta' ),
+          'url' => get_sub_field( 'link_url' ),
+        );
+      endwhile;
+      return $data;
+    else :
+      return false;
+    endif;
+  }
+
   function return_flex_layout($id) {
     $fc_layout_modules = array();
     if ( have_rows( 'layout', $id ) ) :
@@ -54,6 +69,11 @@
           $data = return_flex_copy_block();
         elseif(get_row_layout() == 'carousel'):
           $data = return_flex_carousel();
+        elseif(get_row_layout() == 'link_list'):
+          $data = array(
+            'acf_fc_layout' => 'link_list',
+            'links' => return_link_list(),
+          );
         elseif(get_row_layout() == 'image_grid'):
           $data = return_flex_image_grid();
         elseif(get_row_layout() == 'video'):

@@ -11,6 +11,18 @@
   padding-bottom: calc(var(--header-height) + var(--pad-double));
 }
 
+.content-article {
+  z-index: 10;
+}
+.content-article * {
+  color: var(--type_color)!important;
+}
+
+.project-title {
+  position: sticky;
+  top: 0;
+}
+
 @media (hover:hover) {
   .nav-type:hover {
     color: transparent;

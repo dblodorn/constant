@@ -1,6 +1,6 @@
 <template>
   <div class="copy-block-wrapper">
-    <article class="y-pad-big wysiwig center mw-med" v-html="copy"/>
+    <article class="y-pad-big wysiwig center mw-lg" v-html="copy"/>
   </div>
 </template>
 
@@ -15,3 +15,12 @@ export default {
   }
 }
 </script>
+
+<style lang="css">
+  .copy-block-wrapper {
+    text-align: center;
+  }
+  .copy-block-wrapper h2 {
+    padding-bottom: var(--pad-single);
+  }
+</style>

@@ -3,7 +3,7 @@
     <n-link v-if="isSecondary" class="close-button" :to="'/'">
       <close-icon class="fit-contain"/>
     </n-link>
-    <div v-if="notHome" class="top-header flex-centered shadow">
+    <div v-if="notHome" :class="['top-header flex-centered bezier-150 shadow', scroll > 50 && 'hide']">
       <n-link class="home-link image-contain" :to="'/'">
         <inline-svg v-if="apiData" class="fit-contain" :src="apiData.options.landing_page.landing_logo"/>
       </n-link>
@@ -28,6 +28,9 @@ export default {
   computed: {
     notHome() {
       return this.$route.name !== "index" ? true : false
+    },
+    scroll () {
+      return this.$store.state.screen.scroll
     },
     isSecondary() {
       return (this.$route.name === "projects-id" || this.$route.name === "artists-id") ? true : false
@@ -78,6 +81,10 @@ export default {
     width: 100%;
     height: var(--header-height);
     z-index: 1000;
+  }
+  .top-header.hide {
+    opacity: 0;
+    pointer-events: none;
   }
   .close-button {
     position: fixed;

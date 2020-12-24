@@ -1,5 +1,5 @@
 <template>
-  <article class="project-article y-pad-big y-pad-bottom mw-full center" v-if="post">
+  <article class="content-article y-pad-big y-pad-bottom mw-full" v-if="post">
     <slot/>
     <h1 class="project-title pad-single">
       <span v-html="post.title"/>
@@ -27,16 +27,3 @@
     }
   }
 </script>
-
-<style lang="css">
-  .project-article {
-    z-index: 10;
-  }
-  .project-article * {
-    color: var(--type_color)!important;
-  }
-  .project-title {
-    position: sticky;
-    top: 0;
-  }
-</style>
