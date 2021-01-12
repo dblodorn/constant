@@ -5,7 +5,10 @@
       <span v-html="post.title"/>
     </h1>
     <div class="mw-med center">
-      <img class="img-auto-width" :src="post.key_image ? post.key_image : post.thumbnail" :alt="post.title">
+      <clip-img
+        :src="post.key_image ? post.key_image : post.thumbnail"
+        :alt="post.title"
+      />
     </div>
     <flex-media-layout 
       :layout="post.layout"
@@ -17,13 +20,29 @@
 </template>
 
 <script>
-  export default {
-    name: "ProjectContent",
-    props: {
-      post: {
-        type: [Object, Boolean],
-        default: false
-      }
+import ClipImg from './ClipImg'
+
+export default {
+  name: "ProjectContent",
+  components: {
+    ClipImg
+  },
+  props: {
+    post: {
+      type: [Object, Boolean],
+      default: false
+    }
+  },
+  computed: {
+    cardRotate() {
+      return this.$cardPerspective(this.$store, 50, 40, 1.35)
     }
   }
+}
 </script>
+
+<style lang="css">
+  .key-image {
+
+  }
+</style>
