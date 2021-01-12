@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <fragment>
     <component :is="'style'">
       :root {
         --bg_color: {{data.options.styling.artists_bg_color}}!important;
@@ -9,17 +9,20 @@
         --footer_type_color: {{data.options.styling.artists_footer_type_color}}!important;
       }
     </component>
-    <nav class="post-nav flex-colum pad-single">
+    <nav class="post-nav flex-column">
       <n-link
         class="nav-type"
+        :style="cardRotate"
         v-for="item in data.options.artists_nav"
         :key="item"
         :to="`/artists/${returnPost(item, data.artists).slug}`"
       >
-        {{returnPost(item, data.artists).title}}
+        <span
+          v-html="returnPost(item, data.artists).title"
+        />
       </n-link>
     </nav>
-  </section>
+  </fragment>
 </template>
 
 <script>
@@ -37,6 +40,11 @@ export default {
     returnPost(id, data) {
       return this.$dataById(id, data)
     }
+  },
+  computed: {
+    cardRotate() {
+      return this.$cardPerspective(this.$store, 60, 50, 1)
+    },
   },
   head () {
     return {

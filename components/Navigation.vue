@@ -1,5 +1,5 @@
 <template>
-  <nav class="flex-row flex-space-between text-align-center x-pad-single">
+  <nav class="main-nav flex-row flex-space-between text-align-center x-pad-single">
     <n-link
       :class="['footer-nav-type h3', !notHome ? 'outline-hover' : 'home-hover']"
       v-for="item of navigation"
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="css">
-  nav {
+  .main-nav {
     height: 100%;
     align-items: center;
     width: 100%;

@@ -4,11 +4,38 @@
   font-family: var(--font-b);
   text-transform: uppercase;
   letter-spacing: .75vmin;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.nav-type:first-child {
+  margin-top: 10rem;
+}
+
+.nav-type:last-child {
+  margin-bottom: 10rem;
+}
+
+.nav-type:nth-of-type(1n) {
+  transform-origin: 20rem 0;
+  transform: translateZ(500px);
+}
+
+.nav-type:nth-of-type(2n) {
+  transform-origin: 10rem -20rem;
+  transform: translateZ(300px);
+}
+
+.nav-type:nth-of-type(3n) {
+  transform-origin: -10rem 20rem;
+  transform: translateZ(-300px);
 }
 
 .post-nav {
-  padding-top: calc(var(--header-height) + var(--pad-single));
-  padding-bottom: calc(var(--header-height) + var(--pad-double));
+  transform: translateZ(0);
+  perspective: 5000px;
+  transform-style: preserve-3d;
+  padding-left: 2%;
 }
 
 .content-article {

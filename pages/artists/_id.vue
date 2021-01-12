@@ -11,7 +11,10 @@
         --footer_type_color: {{apiData.options.styling.artists_post_footer_type_color}}!important;
       }
     </component>
-    <pattern-bg/>
+    <pattern-bg
+      :style="cardRotate"
+      class="bg-card"
+    />
   </project-content>
 </template>
 
@@ -34,6 +37,9 @@ export default {
     ProjectContent
   },
   computed: {
+    cardRotate() {
+      return this.$cardPerspective(this.$store, 50, 40, 1.35)
+    },
     ...mapState({
       apiData: 'api'
     })

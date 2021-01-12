@@ -62,7 +62,8 @@ export default {
     { src: "~plugins/dataById" },
     { src: "~plugins/dataBySlug" },
     { src: "~plugins/postIndex" },
-    { src: "~plugins/getPostData" }
+    { src: "~plugins/getPostData" },
+    { src: "~plugins/cardPerspective" }
   ],
   buildModules: [
     'nuxt-purgecss',

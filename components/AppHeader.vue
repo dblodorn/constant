@@ -1,15 +1,15 @@
 <template>
-  <div :class="$route.name">
+  <div :class="['header-container', $route.name]">
     <n-link v-if="isSecondary" class="close-button" :to="'/'">
       <close-icon class="fit-contain"/>
     </n-link>
     <div v-if="notHome" :class="['top-header flex-centered bezier-150 shadow', scroll > 50 && 'hide']">
-      <n-link class="home-link image-contain" :to="'/'">
+      <n-link :style="headerLogoRotate" class="home-link image-contain" :to="'/'">
         <inline-svg v-if="apiData" class="fit-contain" :src="apiData.options.landing_page.landing_logo"/>
       </n-link>
     </div>
     <header :class="['header-wrapper', isSecondary ? 'secondary' : 'top-level']">
-      <navigation/>
+      <navigation :style="navRotate"/>
     </header>
   </div>
 </template>
@@ -28,6 +28,15 @@ export default {
   computed: {
     notHome() {
       return this.$route.name !== "index" ? true : false
+    },
+    headerLogoRotate() {
+      return this.$cardPerspective(this.$store, 40, 40)
+    },
+    navRotate() {
+      const ay = (this.$store.state.screen.height / 2 - this.$store.state.screen.mouseY) / 80
+      return {
+        transform: `rotateX(${ay}deg)`
+      }
     },
     scroll () {
       return this.$store.state.screen.scroll
@@ -50,6 +59,12 @@ export default {
     height: var(--header-height);
     z-index: 9000;
     filter: var(--shadow);
+    transform: translateZ(0);
+    perspective: 500px;
+    transform-style: preserve-3d;
+  }
+  .header-container {
+    overflow-x: hidden;
   }
   .header-wrapper {
     background-color: var(--footer_color);
@@ -81,6 +96,8 @@ export default {
     width: 100%;
     height: var(--header-height);
     z-index: 1000;
+    perspective: 500px;
+    transform-style: preserve-3d;
   }
   .top-header.hide {
     opacity: 0;
