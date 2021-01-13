@@ -9,7 +9,7 @@
       :style="cardRotate"
     >
       <inline-svg 
-        class="bg-svg shadow fit-cover" 
+        class="bg-svg shadow fit-cover big-fade-in" 
         :src="apiData.options.bg_patterns[0].bg_pattern"
         :preserveAspectRatio="'none'"
       />
@@ -35,6 +35,20 @@ export default {
 </script>
 
 <style lang="css">
+  @keyframes bigFade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .big-fade-in {
+    animation-name: bigFade;
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-timing-function:cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
   .bg-svg * {
     fill: var(--pattern_color);
   }

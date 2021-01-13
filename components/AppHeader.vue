@@ -1,6 +1,6 @@
 <template>
   <div :class="['header-container', $route.name]">
-    <n-link v-if="isSecondary" class="close-button" :to="'/'">
+    <n-link v-if="isSecondary" class="close-button" :to="backLink">
       <close-icon class="fit-contain"/>
     </n-link>
     <div v-if="notHome" :class="['top-header flex-centered bezier-150 shadow', scroll > 50 && 'hide']">
@@ -44,6 +44,15 @@ export default {
     isSecondary() {
       return (this.$route.name === "projects-id" || this.$route.name === "artists-id") ? true : false
     },
+    backLink() {
+      if (this.$route.name === "projects-id") {
+        return '/projects'
+      } else if (this.$route.name === "artists-id") {
+        return '/artists'
+      } else {
+        return '/'
+      }
+    },
     ...mapState({
       apiData: 'api'
     })
@@ -58,22 +67,19 @@ export default {
     z-index: 10;
     height: var(--header-height);
     z-index: 9000;
-    filter: var(--shadow);
     transform: translateZ(0);
     perspective: 500px;
     transform-style: preserve-3d;
+    position: fixed;
   }
   .header-container {
     overflow-x: hidden;
-  }
-  .header-wrapper {
-    background-color: var(--footer_color);
   }
   .header-wrapper.top-level {
     position: fixed;
   }
   .header-wrapper.secondary {
-    position: relative;
+    /* position: relative; */
     margin-top: var(--pad-double);
   }
   .projects-id .top-header,

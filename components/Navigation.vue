@@ -1,5 +1,5 @@
 <template>
-  <nav class="main-nav flex-row flex-space-between text-align-center x-pad-single">
+  <nav class="main-nav flex-row flex-space-between text-align-center x-pad-single animate__animated animate__fadeInUp animate__faster animate__delay-1s">
     <n-link
       :class="['footer-nav-type h3', !notHome ? 'outline-hover' : 'home-hover']"
       v-for="item of navigation"
@@ -40,6 +40,8 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
+    filter: var(--shadow);
+    background-color: var(--footer_color);
   }
   .footer-nav-type {
     color: var(--footer_type_color);

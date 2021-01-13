@@ -99,6 +99,7 @@
       'thumbnail' => return_thumb_url($post),
       'meta_description' => return_null_false(get_field( 'meta_description', $post->ID )),
       'key_image' => return_null_false(get_field( 'key_image', $post->ID )),
+      'key_image_mask' => return_null_false(get_field( 'key_image_mask', $post->ID )),
       'layout' => return_flex_layout($id)
     );
   }

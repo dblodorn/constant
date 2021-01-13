@@ -18,10 +18,12 @@
       class="logo-wrapper shadow bg-card"
       :style="titleRotate"
     >
-      <div class="landing-logo center">
-        <inline-svg :src="data.options.landing_page.landing_logo"/>
+      <div class="landing-card-inner animate__animated animate__fadeIn animate__faster animate__delay-1s">
+        <div class="landing-logo center">
+          <inline-svg :src="data.options.landing_page.landing_logo"/>
+        </div>
+        <p class="landing-tagline y-pad-top y-pad-single" v-html="data.options.landing_page.landing_tagline"/>
       </div>
-      <p class="landing-tagline y-pad-top y-pad-single" v-html="data.options.landing_page.landing_tagline"/>
     </div>
     <pattern-bg/>
   </viewport-wrapper>
@@ -65,12 +67,22 @@ export default {
     transform-style: preserve-3d;
     height: 30rem;
     width: 50%;
+    z-index: 9000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  .landing-card-inner {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 9000;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;

@@ -44,7 +44,10 @@
 .content-article * {
   color: var(--type_color)!important;
 }
-
+.content-inner {
+  perspective: 5000px;
+  transform-style: preserve-3d;
+}
 .project-title {
   position: sticky;
   top: 0;

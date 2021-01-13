@@ -14,6 +14,7 @@
         class="nav-type"
         v-for="item in data.options.projects_nav"
         :key="item"
+        :style="cardRotate"
         :to="`/projects/${returnPost(item, data.projects).slug}`"
       >
         {{returnPost(item, data.projects).title}}
@@ -37,6 +38,11 @@ export default {
     returnPost(id, data) {
       return this.$dataById(id, data)
     }
+  },
+  computed: {
+    cardRotate() {
+      return this.$cardPerspective(this.$store, 60, 50, 1)
+    },
   },
   head () {
     return {
