@@ -1,6 +1,7 @@
 <template>
   <viewport-wrapper
     :zIndex="1"
+    class="wrapper"
   >
     <component :is="'style'">
       :root {
@@ -10,13 +11,19 @@
         --landing_type_color: {{data.options.styling.landing_type_color}}!important;
         --footer_color: {{data.options.styling.landing_footer_color}}!important;
         --footer_type_color: {{data.options.styling.landing_footer_type_color}}!important;
+        --motion-shadow: {{`0 0 5px rgba(0,0,0,.1)`}}!important;
       }
     </component>
-    <div class="fit-cover logo-wrapper shadow">
-      <div class="landing-logo center">
-        <inline-svg :src="data.options.landing_page.landing_logo"/>
+    <div
+      class="logo-wrapper shadow bg-card"
+      :style="titleRotate"
+    >
+      <div class="landing-card-inner animate__animated animate__fadeIn animate__faster animate__delay-1s">
+        <div class="landing-logo center">
+          <inline-svg :src="data.options.landing_page.landing_logo"/>
+        </div>
+        <p class="landing-tagline y-pad-top y-pad-single" v-html="data.options.landing_page.landing_tagline"/>
       </div>
-      <p class="landing-tagline y-pad-top y-pad-single" v-html="data.options.landing_page.landing_tagline"/>
     </div>
     <pattern-bg/>
   </viewport-wrapper>
@@ -32,6 +39,11 @@ export default {
         return { data: res.data }
       })
   },
+  computed: {
+    titleRotate() {
+      return this.$cardPerspective(this.$store, 30, 20, 1)
+    }
+  },
   head () {
     return {
       title: process.env.APP_TITLE,
@@ -45,18 +57,44 @@ export default {
 </script>
 
 <style lang="css">
+  .wrapper {
+    transform: translateZ(0);
+    perspective: 2000px;
+    transform-style: preserve-3d;
+    overflow: hidden;
+  }
   .logo-wrapper {
-    height: calc(100vh - var(--header-height));
+    transform-style: preserve-3d;
+    height: 30rem;
+    width: 50%;
+    z-index: 9000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  .landing-card-inner {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 9000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
   }
   .landing-logo {
     max-width: 40rem;
     width: 100%;
     position: relative;
+    transform: translateZ(200px);
+    transform-style: preserve-3d;
   }
   .landing-logo svg {
     width: 100%;
@@ -64,5 +102,9 @@ export default {
   }
   .landing-logo * {
     fill: var(--logo_color);
+  }
+  .landing-tagline {
+    transform: translateZ(-150px);
+    transform-style: preserve-3d;
   }
 </style>

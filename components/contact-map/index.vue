@@ -2,7 +2,7 @@
   <a 
     :href="mapLink"
     target="_blank"
-    class="map-wrapper mw-lg center y-margin-big y-margin-bottom"
+    class="map-wrapper"
   >
     <div class="image-sizer">
       <googlemaps-map ref="map" class="map" :center.sync="center" :zoom.sync="zoom" :options="mapOptions">
@@ -39,7 +39,7 @@ export default {
       default: '#EEAD00'
     },
     zoomInt: {
-      type: Number,
+      type: [Number, String],
       default: 10
     },
     textColor: {
@@ -78,12 +78,12 @@ export default {
 <style lang="css">
   .map-wrapper {
     width: 100%;
-    border-radius: 5rem;
-    overflow: hidden;
     height: 0;
+    overflow-x: hidden;
     padding-bottom: 50%;
     overflow-y: visible;
-    border: var(--border-black);
+    margin: 0 auto;
+    position: relative;
   }
   .map-wrapper .map {
     height: 100%;

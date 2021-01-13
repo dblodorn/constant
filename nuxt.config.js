@@ -30,10 +30,12 @@ export default {
     '~assets/css/constant.css',
     'assets/css/flickity.css'
   ],
+  /*
   pageTransition: {
     name: 'fade',
     mode: 'out-in'
   },
+  */
   plugins: [
     { src: '~plugins/event-bus' },
     { src: '~plugins/vue-inline-svg' },
@@ -60,7 +62,8 @@ export default {
     { src: "~plugins/dataById" },
     { src: "~plugins/dataBySlug" },
     { src: "~plugins/postIndex" },
-    { src: "~plugins/getPostData" }
+    { src: "~plugins/getPostData" },
+    { src: "~plugins/cardPerspective" }
   ],
   buildModules: [
     'nuxt-purgecss',

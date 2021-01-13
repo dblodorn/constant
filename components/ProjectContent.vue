@@ -1,15 +1,22 @@
 <template>
-  <article class="project-article y-pad-big y-pad-bottom mw-full center" v-if="post">
+  <article class="content-article y-pad-big y-pad-bottom mw-full" v-if="post">
     <slot/>
-    <h1 class="project-title pad-single">
-      <span v-html="post.title"/>
-    </h1>
-    <div class="mw-med center">
-      <img class="img-auto-width" :src="post.key_image ? post.key_image : post.thumbnail" :alt="post.title">
+    <div class="content-inner">
+      <h1 class="project-title pad-single">
+        <span v-html="post.title"/>
+      </h1>
+      <div class="mw-med center">
+        <clip-img
+          :src="post.key_image ? post.key_image : post.thumbnail"
+          :mask="post.key_image_mask"
+          :alt="post.title"
+        />
+      </div>
+      <flex-media-layout 
+        class="animate__animated animate__fadeIn animate__delay-1s"
+        :layout="post.layout"
+      />
     </div>
-    <flex-media-layout 
-      :layout="post.layout"
-    />
   </article>
   <div v-else class="empty">
     <h1>Loading</h1>
@@ -17,26 +24,23 @@
 </template>
 
 <script>
-  export default {
-    name: "ProjectContent",
-    props: {
-      post: {
-        type: [Object, Boolean],
-        default: false
-      }
+import ClipImg from './ClipImg'
+
+export default {
+  name: "ProjectContent",
+  components: {
+    ClipImg
+  },
+  props: {
+    post: {
+      type: [Object, Boolean],
+      default: false
+    }
+  },
+  computed: {
+    cardRotate() {
+      return this.$cardPerspective(this.$store, 50, 40, 1.35)
     }
   }
+}
 </script>
-
-<style lang="css">
-  .project-article {
-    z-index: 10;
-  }
-  .project-article * {
-    color: var(--type_color)!important;
-  }
-  .project-title {
-    position: sticky;
-    top: 0;
-  }
-</style>

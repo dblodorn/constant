@@ -1,5 +1,10 @@
 <template>
   <fragment>
+    <component :is="'style'">
+      :root {
+        --shadow: {{`drop-shadow(0px 0px ${shadowPosition}px rgba(0,0,0,.25))`}}!important;
+      }
+    </component>
     <main class="page-wrapper">
       <nuxt />
     </main>
@@ -21,7 +26,14 @@ export default {
   computed: {
     ...mapGetters({
       breakpoint: 'screen/breakpoint'
-    })
+    }),
+    shadowPosition() {
+      const rangeX = Math.round(Math.cos((Math.round((this.$store.state.screen.mouseX / this.$store.state.screen.width) * 100) / 100) * 3) * 100) / 100
+      const rangeY = Math.round(Math.cos((Math.round((this.$store.state.screen.mouseY / this.$store.state.screen.height) * 100) / 100) * 3) * 100) / 100
+      const range = rangeX - rangeY
+      const position = (range < 0 ? range * -1 : range) * 6
+      return position
+    },
   },
   data() {
     return {
@@ -29,6 +41,7 @@ export default {
     }
   },
   created () {
+    this.getData()
     this.debouncedResize = debounce(this.resize, 50)
   },
   mounted () {
@@ -38,7 +51,6 @@ export default {
     window.addEventListener('orientationchange', this.debouncedResize)
     window.addEventListener('scroll', this.scroll, { passive: true })
     window.addEventListener('mousemove', this.mouseMove, { passive: true })
-    console.log(this.$global)
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.debouncedResize, {
@@ -68,6 +80,7 @@ export default {
       this.menuState = !this.menuState
     },
     ...mapActions({
+      getData: 'getData',
       setTouch: 'screen/setTouch',
       setScreenSize: 'screen/setScreenSize'
     }),
@@ -80,9 +93,6 @@ export default {
 </script>
 
 <style lang="css">
-  :root {
-    --shadow: drop-shadow(0px 0px 4px rgba(0,0,0,.25));
-  }
   .shadow {
     filter: var(--shadow);
   }
