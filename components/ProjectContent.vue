@@ -24,13 +24,8 @@
 </template>
 
 <script>
-import ClipImg from './ClipImg'
-
 export default {
   name: "ProjectContent",
-  components: {
-    ClipImg
-  },
   props: {
     post: {
       type: [Object, Boolean],

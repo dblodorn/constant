@@ -9,17 +9,10 @@
         --footer_type_color: {{data.options.styling.projects_footer_type_color}}!important;
       }
     </component>
-    <nav class="post-nav flex-colum pad-single">
-      <n-link
-        class="nav-type"
-        v-for="item in data.options.projects_nav"
-        :key="item"
-        :style="cardRotate"
-        :to="`/projects/${returnPost(item, data.projects).slug}`"
-      >
-        {{returnPost(item, data.projects).title}}
-      </n-link>
-    </nav>
+    <index-nav
+      :menu="data.options.projects_nav"
+      :data="data.project"
+    />
   </section>
 </template>
 
@@ -33,16 +26,6 @@ export default {
       .then((res) => {
         return { data: res.data }
       })
-  },
-  methods: {
-    returnPost(id, data) {
-      return this.$dataById(id, data)
-    }
-  },
-  computed: {
-    cardRotate() {
-      return this.$cardPerspective(this.$store, 20, 20, 1)
-    },
   },
   head () {
     return {

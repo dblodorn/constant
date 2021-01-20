@@ -38,8 +38,14 @@ export default {
   data() {
     return {
       proportion: '100%',
-      loaded: false
+      loaded: false,
+      image: false
     }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.image = this.$refs.image
+    })
   },
   computed: {
     cardRotate() {
@@ -49,7 +55,9 @@ export default {
   methods: {
     imgLoaded() {
       this.$nextTick(() => {
-        this.proportion = `${this.$refs.image.naturalHeight / this.$refs.image.naturalWidth * 100}%`
+        if(this.image) {
+          this.proportion = `${this.$refs.image.naturalHeight / this.$refs.image.naturalWidth * 100}%`
+        }
         setTimeout(() => {this.loaded = true}, 500)
       })
     }

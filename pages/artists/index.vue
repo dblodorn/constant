@@ -9,19 +9,10 @@
         --footer_type_color: {{data.options.styling.artists_footer_type_color}}!important;
       }
     </component>
-    <nav class="post-nav flex-column">
-      <n-link
-        class="nav-type"
-        :style="cardRotate"
-        v-for="item in data.options.artists_nav"
-        :key="item"
-        :to="`/artists/${returnPost(item, data.artists).slug}`"
-      >
-        <span
-          v-html="returnPost(item, data.artists).title"
-        />
-      </n-link>
-    </nav>
+    <index-nav
+      :menu="data.options.artists_nav"
+      :data="data.artists"
+    />
   </fragment>
 </template>
 
@@ -35,16 +26,6 @@ export default {
       .then((res) => {
         return { data: res.data }
       })
-  },
-  methods: {
-    returnPost(id, data) {
-      return this.$dataById(id, data)
-    }
-  },
-  computed: {
-    cardRotate() {
-      return this.$cardPerspective(this.$store, 60, 50, 1)
-    },
   },
   head () {
     return {
