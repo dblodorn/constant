@@ -7,6 +7,7 @@
         --logo_color: {{data.options.styling.artists_nav_type_color}}!important;
         --footer_color: {{data.options.styling.artists_footer_color}}!important;
         --footer_type_color: {{data.options.styling.artists_footer_type_color}}!important;
+        --pattern_color: {{patternColor(data.options.styling.artists_bg_color)}}!important;
       }
     </component>
     <index-nav
@@ -18,6 +19,7 @@
 
 <script>
 import axios from 'axios'
+import Color from 'color'
 import { mapState } from 'vuex'
 
 export default {
@@ -26,6 +28,12 @@ export default {
       .then((res) => {
         return { data: res.data }
       })
+  },
+  methods: {
+    patternColor(input) {
+      const color = Color(input)
+      return color.lighten(0.05)
+    }
   },
   head () {
     return {
