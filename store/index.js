@@ -20,13 +20,16 @@ export const mutations = {
   },
   SET_PATTERN(state) {
     let index = 0
+
     const getRandomInt = (max) =>
       Math.floor(Math.random() * Math.floor(max))
-    if (this.state.api) {
-      const amount = this.state.api.options.bg_patterns.length
+    
+    if (state.api) {
+      const amount = state.api.options.bg_patterns.length
       index = getRandomInt(amount)
     }
+    
     console.log('bg::', index)
-    state.pageCount = index
+    state.patternIndex = index
   }
 }

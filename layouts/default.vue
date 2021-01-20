@@ -5,6 +5,13 @@
         --shadow: {{`drop-shadow(0px 0px ${shadowPosition}px rgba(0,0,0,.25))`}}!important;
       }
     </component>
+    <div v-if="apiData && !isSecondary" class="sticker-wrapper image-contain shadow">
+      <img 
+        :src="apiData.options.landing_page.sticker"
+        alt="Constant Artists"
+        :style="cardRotate"  
+      >
+    </div>
     <main class="page-wrapper">
       <nuxt />
     </main>
@@ -24,11 +31,25 @@ export default {
     AppFooter
   },
   watch: {
+    apiData () {
+      if (!this.loaded) {
+        this.setPattern()
+        this.loaded = true
+      }
+    },
     $route () {
       this.setPattern()
     }
   },
+  data() {
+    return {
+      loaded: false
+    }
+  },
   computed: {
+    ...mapState({
+      apiData: 'api'
+    }),
     ...mapGetters({
       breakpoint: 'screen/breakpoint'
     }),
@@ -39,11 +60,17 @@ export default {
       const position = (range < 0 ? range * -1 : range) * 6
       return position
     },
-  },
-  data() {
-    return {
-      menuState: false
-    }
+    isSecondary() {
+      return (this.$route.name === "projects-id" || this.$route.name === "artists-id" || this.$route.name === "artists" || this.$route.name === "projects") ? true : false
+    },
+    cardRotate() {
+      return this.$cardPerspective(
+        this.$store,
+        20, 
+        20,
+        1
+      )
+    },
   },
   created () {
     this.getData()

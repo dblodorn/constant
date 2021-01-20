@@ -4,8 +4,11 @@
       <close-icon class="fit-contain"/>
     </n-link>
     <div v-if="notHome" :class="['top-header flex-centered bezier-150 shadow', scroll > 50 && 'hide']">
-      <n-link :style="headerLogoRotate" class="home-link image-contain" :to="'/'">
-        <inline-svg v-if="apiData" class="fit-contain" :src="apiData.options.landing_page.landing_logo"/>
+      <n-link
+        :class="['footer-nav-type h3 outline-hover']"
+        :to="`/`"
+      >
+        <span>HOME</span>
       </n-link>
     </div>
     <header v-if="!isSecondary" :class="['header-wrapper top-level']">

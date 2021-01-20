@@ -3,17 +3,20 @@
     :zIndex="0"
     class="bg-panel"
   >
-    <div 
-      v-if="apiData" 
-      class="bg-wrapper fit-cover"
-      :style="cardRotate"
-    >
-      <inline-svg 
-        class="bg-svg shadow fit-cover big-fade-in" 
-        :src="bgPattern"
-        :preserveAspectRatio="'none'"
-      />
-    </div>
+    <client-only>
+      <div 
+        v-if="apiData" 
+        :class="['bg-wrapper fit-cover', apiData && 'reveal']"
+        :style="cardRotate"
+      >
+        <inline-svg 
+          :key="index"
+          class="bg-svg shadow fit-cover big-fade-in" 
+          :src="bgPattern"
+          :preserveAspectRatio="'none'"
+        />
+      </div>
+    </client-only>
   </viewport-wrapper>
 </template>
 
@@ -24,8 +27,8 @@ export default {
   name: "PatternBg",
   computed: {
     bgPattern() {
-      console.log(this.$store.state.patternIndex)
-      return this.apiData.options.bg_patterns[this.$store.state.patternIndex].bg_pattern
+      const pattern = this.apiData.options.bg_patterns[this.$store.state.patternIndex].bg_pattern
+      return pattern
     },
     cardRotate() {
       return this.$cardPerspective(
@@ -73,5 +76,11 @@ export default {
     backface-visibility: hidden;
     pointer-events: none;
     overflow: hidden;
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity 2500ms ease 500ms;
+  }
+  .bg-wrapper.reveal {
+    opacity: 1;
   }
 </style>
