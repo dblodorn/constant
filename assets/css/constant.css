@@ -51,6 +51,11 @@
 .project-title {
   position: sticky;
   top: 0;
+  color: transparent!important;
+  -webkit-text-fill-color: transparent!important;
+  -webkit-text-stroke-color: var(--type_color);
+  -webkit-text-stroke-width: 1.5px;
+  -webkit-font-smoothing: antialiased;
 }
 
 .map-view {

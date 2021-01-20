@@ -41,7 +41,12 @@ export default {
   },
   computed: {
     titleRotate() {
-      return this.$cardPerspective(this.$store, 30, 20, 1)
+      return this.$cardPerspective(
+        this.$store,
+        this.data.options.landing_page.logo_3d.x,
+        this.data.options.landing_page.logo_3d.y,
+        this.data.options.landing_page.logo_3d.scale
+      )
     }
   },
   head () {

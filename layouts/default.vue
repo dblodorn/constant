@@ -23,6 +23,11 @@ export default {
     AppHeader,
     AppFooter
   },
+  watch: {
+    $route () {
+      this.setPattern()
+    }
+  },
   computed: {
     ...mapGetters({
       breakpoint: 'screen/breakpoint'
@@ -86,7 +91,8 @@ export default {
     }),
     ...mapMutations({
       setScroll: 'screen/setScroll',
-      setMousePos: 'screen/setMousePos'
+      setMousePos: 'screen/setMousePos',
+      setPattern: 'SET_PATTERN'
     })
   }
 }

@@ -8,7 +8,7 @@
         <inline-svg v-if="apiData" class="fit-contain" :src="apiData.options.landing_page.landing_logo"/>
       </n-link>
     </div>
-    <header :class="['header-wrapper', isSecondary ? 'secondary' : 'top-level']">
+    <header v-if="!isSecondary" :class="['header-wrapper top-level']">
       <navigation :style="navRotate"/>
     </header>
   </div>

@@ -1,17 +1,17 @@
 <template>
   <div 
-    class="clip-image"
+    :class="['clip-image']"
     :style="cardRotate"
   >
     <div 
-      :class="['clip-image-wrapper shadow', loaded && 'animate__animated animate__fadeIn animate__faster']"
+      :class="['clip-image-wrapper shadow', loaded && 'loaded']"
       :style="`padding-bottom: ${proportion};`"
     >
       <img 
         ref="image" 
         class="svg-clip"
         v-on:load="imgLoaded" 
-        :style="`--clip-image: url(${mask});`"
+        :style="mask && `--clip-image: url(${mask});`"
         :src="src"
         :alt="alt"
       >
@@ -27,7 +27,7 @@ export default {
       type: String
     },
     mask: {
-      type: String,
+      type: [String, Boolean],
       default: '/placeholder/mask.svg',
       useDefaultForNull: true
     },
@@ -49,8 +49,8 @@ export default {
   methods: {
     imgLoaded() {
       this.$nextTick(() => {
-        this.loaded = true
         this.proportion = `${this.$refs.image.naturalHeight / this.$refs.image.naturalWidth * 100}%`
+        setTimeout(() => {this.loaded = true}, 500)
       })
     }
   }
@@ -64,16 +64,22 @@ export default {
     transform-style: preserve-3d;
     backface-visibility: hidden;
   }
+  .clip-image-wrapper.loaded {
+    opacity: 1;
+  }
   .clip-image-wrapper {
     width: 100%;
     height: 0;
     overflow: visible;
     position: relative;
+    opacity: 0;
+    transition: all 500ms cubic-bezier(.19,.48,.27,.99);
+    will-change: all;
   }
   .svg-clip {
     mask-image: var(--clip-image);
     mask-position: center;
-    mask-size: contain;
+    mask-size: cover;
     mask-repeat: no-repeat;
     width: 100%;
     height: 100%;
@@ -83,6 +89,5 @@ export default {
     right: 0;
     bottom: 0;
     margin: auto;
-    object-fit: cover;
   }
 </style>

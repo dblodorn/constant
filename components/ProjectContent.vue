@@ -5,7 +5,7 @@
       <h1 class="project-title pad-single">
         <span v-html="post.title"/>
       </h1>
-      <div class="mw-med center">
+      <div class="mw-med center y-pad-big y-pad-bottom">
         <clip-img
           :src="post.key_image ? post.key_image : post.thumbnail"
           :mask="post.key_image_mask"

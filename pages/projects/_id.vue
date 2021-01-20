@@ -34,6 +34,9 @@ export default {
     error: 'errorRedirect'
   },
   computed: {
+    cardRotate() {
+      return this.$cardPerspective(this.$store, 50, 40, 1.35)
+    },
     ...mapState({
       apiData: 'api'
     })

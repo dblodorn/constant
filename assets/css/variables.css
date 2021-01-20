@@ -9,8 +9,8 @@
   --max-width-medium: calc(var(--base-unit) * 45);
   --max-width-large: calc(var(--base-unit) * 50);
   --max-width-xl: calc(var(--base-unit) * 70);
-  --header-height: calc(var(--base-unit) * 4);
-  --footer-height: calc(var(--base-unit) * 4);
+  --header-height: calc(var(--base-unit) * 3.25);
+  --footer-height: calc(var(--base-unit) * 3.25);
 }
 
 /* TYPOGRAPHY */

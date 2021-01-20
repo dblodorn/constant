@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     cardRotate() {
-      return this.$cardPerspective(this.$store, 60, 50, 1)
+      return this.$cardPerspective(this.$store, 20, 20, 1)
     },
   },
   head () {

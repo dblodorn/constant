@@ -10,7 +10,7 @@
     >
       <inline-svg 
         class="bg-svg shadow fit-cover big-fade-in" 
-        :src="apiData.options.bg_patterns[0].bg_pattern"
+        :src="bgPattern"
         :preserveAspectRatio="'none'"
       />
     </div>
@@ -23,11 +23,21 @@ import { mapState } from 'vuex'
 export default {
   name: "PatternBg",
   computed: {
+    bgPattern() {
+      console.log(this.$store.state.patternIndex)
+      return this.apiData.options.bg_patterns[this.$store.state.patternIndex].bg_pattern
+    },
     cardRotate() {
-      return this.$cardPerspective(this.$store, 50, 40, 1.35)
+      return this.$cardPerspective(
+        this.$store,
+        this.apiData.options.bg_3d.x, 
+        this.apiData.options.bg_3d.y,
+        this.apiData.options.bg_3d.scale
+      )
     },
     ...mapState({
-      apiData: 'api'
+      apiData: 'api',
+      index: 'patternIndex'
     })
   }
   
