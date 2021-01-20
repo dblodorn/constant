@@ -13,6 +13,7 @@
     <index-nav
       :menu="data.options.projects_nav"
       :data="data.projects"
+      :location="'projects'"
     />
   </section>
 </template>

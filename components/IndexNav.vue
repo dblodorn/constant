@@ -9,7 +9,7 @@
       >
         <n-link
           class="post-nav-type"
-          :to="`/artists/${returnPost(item, data).slug}`"
+          :to="`/${location}/${returnPost(item, data).slug}`"
           @mouseenter.native="hoverHandler(returnPost(item, data))"
           @mouseleave.native="hoverHandler(false)"
         >
@@ -41,6 +41,10 @@ export default {
     },
     data: {
       type: Array
+    },
+    location: {
+      type: String,
+      required: true
     }
   },
   data() {

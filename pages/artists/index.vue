@@ -13,6 +13,7 @@
     <index-nav
       :menu="data.options.artists_nav"
       :data="data.artists"
+      :location="'artists'"
     />
   </fragment>
 </template>
