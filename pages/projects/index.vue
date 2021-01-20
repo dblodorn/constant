@@ -11,7 +11,7 @@
     </component>
     <index-nav
       :menu="data.options.projects_nav"
-      :data="data.project"
+      :data="data.projects"
     />
   </section>
 </template>
