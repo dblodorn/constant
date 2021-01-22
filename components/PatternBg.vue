@@ -16,6 +16,19 @@
           :preserveAspectRatio="'none'"
         />
       </div>
+      <div 
+        v-if="apiData" 
+        :class="['bg-wrapper bottom fit-cover', apiData && 'reveal']"
+        :style="bottomCardRotate"
+      >
+        <inline-svg 
+          :key="index"
+          :style="`--bg-pattern-color: ${apiData.options.styling.landing_bg_pattern_color}`"
+          class="bg-svg-bottom shadow fit-cover big-fade-in" 
+          :src="bottomPattern"
+          :preserveAspectRatio="'none'"
+        />
+      </div>
     </client-only>
   </viewport-wrapper>
 </template>
@@ -30,12 +43,24 @@ export default {
       const pattern = this.apiData.options.bg_patterns[this.$store.state.patternIndex].bg_pattern
       return pattern
     },
+    bottomPattern() {
+      const pattern = this.apiData.options.bottom_layer_patterns[this.$store.state.patternIndex].bg_pattern
+      return pattern
+    },
     cardRotate() {
       return this.$cardPerspective(
         this.$store,
         this.apiData.options.bg_3d.x, 
         this.apiData.options.bg_3d.y,
         this.apiData.options.bg_3d.scale
+      )
+    },
+    bottomCardRotate() {
+      return this.$cardPerspective(
+        this.$store,
+        this.apiData.options.bottom_3d.x * -1, 
+        this.apiData.options.bottom_3d.y * -1,
+        this.apiData.options.bottom_3d.scale * 1.5
       )
     },
     ...mapState({
@@ -65,6 +90,9 @@ export default {
   .bg-svg * {
     fill: var(--pattern_color);
   }
+  .bg-svg-bottom * {
+    fill: var(--bg-pattern-color);
+  }
   .bg-panel {
     transform: translateZ(0);
     perspective: 2000px;
@@ -79,6 +107,10 @@ export default {
     opacity: 0;
     will-change: opacity;
     transition: opacity 2500ms ease 500ms;
+    z-index: 1;
+  }
+  .bg-wrapper.bottom {
+    z-index: 0;
   }
   .bg-wrapper.reveal {
     opacity: 1;

@@ -1,7 +1,8 @@
 export const state = () => ({
   api: false,
   showTags: false,
-  patternIndex: 0
+  patternIndex: 0,
+  bottomIndex: 0,
 })
 
 export const actions = {
@@ -20,16 +21,22 @@ export const mutations = {
   },
   SET_PATTERN(state) {
     let index = 0
-
     const getRandomInt = (max) =>
       Math.floor(Math.random() * Math.floor(max))
-    
     if (state.api) {
       const amount = state.api.options.bg_patterns.length
       index = getRandomInt(amount)
     }
-    
-    console.log('bg::', index)
+    state.patternIndex = index
+  },
+  SET_BOTTOM_PATTERN(state) {
+    let index = 0
+    const getRandomInt = (max) =>
+      Math.floor(Math.random() * Math.floor(max))
+    if (state.api) {
+      const amount = state.api.options.bottom_layer_patterns.length
+      index = getRandomInt(amount)
+    }
     state.patternIndex = index
   }
 }

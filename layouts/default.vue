@@ -34,11 +34,13 @@ export default {
     apiData () {
       if (!this.loaded) {
         this.setPattern()
+        this.setBottomPattern()
         this.loaded = true
       }
     },
     $route () {
       this.setPattern()
+      this.setBottomPattern()
     }
   },
   data() {
@@ -119,7 +121,8 @@ export default {
     ...mapMutations({
       setScroll: 'screen/setScroll',
       setMousePos: 'screen/setMousePos',
-      setPattern: 'SET_PATTERN'
+      setPattern: 'SET_PATTERN',
+      setBottomPattern: 'SET_BOTTOM_PATTERN'
     })
   }
 }
