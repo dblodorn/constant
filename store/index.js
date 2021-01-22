@@ -37,6 +37,6 @@ export const mutations = {
       const amount = state.api.options.bottom_layer_patterns.length
       index = getRandomInt(amount)
     }
-    state.patternIndex = index
+    state.bottomIndex = index
   }
 }
