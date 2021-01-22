@@ -58,7 +58,11 @@ export default {
     },
     hoverHandler(img) {
       if (!this.$store.state.screen.touch && (img !== false)) {
-        this.image = {src: img.thumbnail, mask: img.key_image_mask, title: img.title}
+        this.image = {
+          src: img.thumbnail, 
+          mask: img.feature_image_mask,
+          title: img.title
+        }
       }
     },
   },

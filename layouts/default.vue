@@ -2,7 +2,7 @@
   <fragment>
     <component :is="'style'">
       :root {
-        --shadow: {{`drop-shadow(0px 0px ${shadowPosition}px rgba(0,0,0,.25))`}}!important;
+        --shadow: {{`drop-shadow(0px 0px ${shadowPosition}px rgba(0,0,0,.15))`}}!important;
       }
     </component>
     <div v-if="apiData && !isSecondary" class="sticker-wrapper image-contain shadow">
@@ -57,7 +57,7 @@ export default {
       const rangeX = Math.round(Math.cos((Math.round((this.$store.state.screen.mouseX / this.$store.state.screen.width) * 100) / 100) * 3) * 100) / 100
       const rangeY = Math.round(Math.cos((Math.round((this.$store.state.screen.mouseY / this.$store.state.screen.height) * 100) / 100) * 3) * 100) / 100
       const range = rangeX - rangeY
-      const position = (range < 0 ? range * -1 : range) * 6
+      const position = (range < 0 ? range * -1 : range) * 3
       return position
     },
     isSecondary() {
